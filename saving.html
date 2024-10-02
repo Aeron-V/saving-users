@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Information</title>
+</head>
+<body>
+
+    <h2>Saved Login Information</h2>
+    <div id="loginHistory">
+        <h3>Previous Logins:</h3>
+        <ul id="loginList"></ul>
+    </div>
+
+    <script>
+        // Function to load and display saved login information
+        function updateLoginHistory() {
+            const loginList = document.getElementById('loginList');
+            loginList.innerHTML = ''; // Clear the list before updating
+            const savedLogins = JSON.parse(localStorage.getItem('logins')) || [];
+
+            savedLogins.forEach(entry => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `Username: ${entry.username}, Password: ${entry.password}`;
+                loginList.appendChild(listItem);
+            });
+        }
+
+        // Load and display saved information on page load
+        updateLoginHistory();
+    </script>
+
+</body>
+</html>
